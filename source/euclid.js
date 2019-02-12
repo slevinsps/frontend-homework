@@ -7,7 +7,7 @@
  * @param {number} y - second number 
  * @returns {(number|undefined)} NOD(x,y).
  */
-let nodTwoNumbers = (x, y) => {
+const nodTwoNumbers = (x, y) => {
     if (x !== parseInt(x, 10) || y !== parseInt(y, 10)) {
         return;
     }
@@ -24,23 +24,22 @@ let nodTwoNumbers = (x, y) => {
  * @param {Array} numbers - other numbers 
  * @returns {(number|undefined)} NOD of any numbers.
  */
-let euclid = (x1, ...numbers) => {
+const euclid = (x1, ...numbers) => {
     if (x1 !== parseInt(x1, 10)) {
         return;
     }    
     
     let res = x1;
     let checkType = true;
-    let NumberNotIntException = {};
     try {
         numbers.forEach( item => {
             if (item !== parseInt(item, 10)) {
-                throw NumberNotIntException;
+                throw SyntaxError;
             }
             res = nodTwoNumbers(res, item);
         });
     } catch (e) {
-        if (e === NumberNotIntException) {
+        if (e === SyntaxError) {
             return;        
         }
     }
