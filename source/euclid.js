@@ -29,16 +29,17 @@ const euclid = (x1, ...numbers) => {
         return;
     }    
     let res = x1;
-    try {
-        numbers.forEach( item => {
-            if (item !== parseInt(item, 10)) {
-                throw new SyntaxError("Type does not match");
-            }
-            res = nodTwoNumbers(res, item);
-        });
-    } catch (e) {
-		console.log(e.message);
-		return;
+    let check_type = true;
+    numbers.every( item => {
+        if (item !== parseInt(item, 10)) {
+            check_type = false;
+            return false;
+        }    
+        res = nodTwoNumbers(res, item);
+        return true;
+    });
+    if (!check_type) {
+        return;
     }
     return res;
 }
