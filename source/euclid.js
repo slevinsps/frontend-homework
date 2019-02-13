@@ -11,9 +11,8 @@ const nodTwoNumbers = (x, y) => {
     if (x !== parseInt(x, 10) || y !== parseInt(y, 10)) {
         return;
     }
-    let res = 1;
-    res = x !== 0 ? nodTwoNumbers(y % x, x) : y;
-    return res;
+	
+    return x !== 0 ? nodTwoNumbers(y % x, x) : y;
 }
 
 
@@ -28,18 +27,5 @@ const euclid = (x1, ...numbers) => {
     if (x1 !== parseInt(x1, 10)) {
         return;
     }    
-    let res = x1;
-    let check_type = true;
-    numbers.every( item => {
-        if (item !== parseInt(item, 10)) {
-            check_type = false;
-            return false;
-        }    
-        res = nodTwoNumbers(res, item);
-        return true;
-    });
-    if (!check_type) {
-        return;
-    }
-    return res;
+    return numbers.reduce( (res, item) => res = nodTwoNumbers(res, item), x1);
 }
